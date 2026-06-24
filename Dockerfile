@@ -1,14 +1,19 @@
-FROM node:22-alpine
+FROM node:22-alpine AS build
 
 WORKDIR /app
 
-COPY package*.json ./
+RUN apk add --no-cache git
+
+ARG REPO_URL
+RUN git clone ${REPO_URL} .
+
 RUN npm install
-
-COPY . .
-
 RUN npm run build
 
-EXPOSE 4200
+FROM nginx:alpine
 
-CMD ["npm", "run", "start", "--", "--host", "0.0.0.0", "--port", "4200"]
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
