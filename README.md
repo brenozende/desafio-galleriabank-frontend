@@ -1,59 +1,62 @@
-# DesafioGalleriabankFront
+# Desafio Gallery Bank Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.16.
+Frontend Angular para o desafio Gallery Bank.
 
-## Development server
+## Requisitos
 
-To start a local development server, run:
+- Node.js 22+
+- npm 10+
+- Docker e Docker Compose (opcional, para execução em container)
 
-```bash
-ng serve
-```
+## Executando localmente com npm
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Instale as dependências:
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. Inicie o servidor de desenvolvimento:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+3. Acesse no navegador:
 
-To build the project run:
+```text
+http://localhost:4200
+```
+
+## Build de produção
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Os artefatos serão gerados na pasta `dist/`.
 
-## Running unit tests
+## Executando com Docker
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Na raiz do projeto, execute:
 
 ```bash
-ng test
+docker compose up --build
 ```
 
-## Running end-to-end tests
+A aplicação ficará disponível em:
 
-For end-to-end (e2e) testing, run:
+```text
+http://localhost:4200
+```
+
+Para parar os containers:
 
 ```bash
-ng e2e
+docker compose down
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Observações
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- O frontend consome a API do backend em `http://localhost:8080` por padrão, configurada em `src/environments/environment.ts`.
+- Se o backend estiver rodando em outra porta ou host, ajuste esse valor antes de iniciar o frontend.
